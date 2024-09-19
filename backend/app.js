@@ -1,16 +1,15 @@
 import express from 'express';
 import cors from 'cors';
-import path from 'path'
+import path from 'path';
 import { fileURLToPath } from "url";
-
-const app = express();
 import bodyParser from 'body-parser';
 
+const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 
 // CORS configuration
-const allowedOrigins = ['http://localhost:5173']; // Add your production frontend domain here
+const allowedOrigins = ['http://localhost:5173', 'https://sailoo-chat-app.onrender.com'];
 
 app.use(cors({
     origin: function (origin, callback) {
@@ -20,26 +19,26 @@ app.use(cors({
             callback(new Error('Not allowed by CORS'));
         }
     },
-    credentials: true, // Allow credentials (cookies, etc.)
+    credentials: true,
 }));
 
-app.use(express.json({limit: "16kb"}));
-app.use(bodyParser.json({limit: "16kb"}));
+app.use(express.json({ limit: "16kb" }));
+app.use(bodyParser.json({ limit: "16kb" }));
 
-// Roter paths :-
+// Serve static files from the frontend dist directory
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+// ROUTERS :-
+// Roter paths :- import your routes
 import userRouter from './src/routers/userRouter.js';
 import roomRouter from './src/routers/roomRouter.js';
 
-// ROUTERS :-
 app.use('/api/user', userRouter);
 app.use('/api/room', roomRouter);
 
-// Serve static files from the frontend dist directory
-app.use(express.static(path.join(__dirname,"../frontend/dist")));
-
-// Serve index.html for any unknown paths (for client-side routing)
-app.get('*', (req, res) => 
-  res.sendFile(path.join(__dirname,"../frontend/dist/index.html"))
+// Serve index.html for client-side routing (AFTER serving static assets)
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"))
 );
 
 export { app };

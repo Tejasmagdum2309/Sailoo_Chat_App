@@ -14,7 +14,7 @@ const port = process.env.PORT || 3001;
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173"], // Add your production frontend domain here
+    origin: ["http://localhost:5173","https://sailoo-chat-app.onrender.com"], // Add your production frontend domain here
     methods: ["GET", "POST"],
     credentials: true, // Allow credentials (if needed for auth)
   },
