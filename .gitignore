@@ -1,0 +1,10 @@
+# Ignore node_modules
+BackEnd/node_modules/
+frontend/node_modules/
+node_modules
+
+# Ignore environment keys (adjust based on your actual file names)
+*.env
+.env.local
+.env.production
+.env.development
