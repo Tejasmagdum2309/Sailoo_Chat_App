@@ -13,7 +13,7 @@ const Conn = () => {
   const [roomdata,setRoomdata] = useState();
   const [receivedMessages, setReceivedMessages] = useState([]);
   const [roomDeleted, setRoomDeleted] = useState(false);
-  const socket = useMemo(() => io('http://localhost:3000'), []); // Establish socket connection
+  const socket = useMemo(() => io('https://sailoo-chat-app.onrender.com'), []); // Establish socket connection
   const { user } = useUser(); // Get user data from Clerk
   const [name, setName] = useState('user'); // Set user name from Clerk
   console.log();
