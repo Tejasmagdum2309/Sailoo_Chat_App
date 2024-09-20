@@ -43,6 +43,9 @@ const startServer = async () => {
         socket.join(roomid);
         console.log(`User ${socket.id} joined room: ${roomid}`);
 
+        console.log(`Emitting whojoined event to room: ${roomid}`);
+        io.to(roomid).emit("whojoined","user joined")
+
         // Automatically delete room after 1 minute
         setTimeout(async () => {
           // Emit roomDeleted event to all users in the room
