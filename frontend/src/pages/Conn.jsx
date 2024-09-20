@@ -85,6 +85,14 @@ const Conn = () => {
     socket.on('message', (msg, name) => {
       setReceivedMessages((prevMessages) => [...prevMessages, `${name}: ${msg}`]);
     });
+
+     socket.on('whojoined', () => {
+      console.log("who joined..")
+      toast.success("user entered room..", {
+        position: "top-center",
+        autoClose: 3000,
+      });
+    })
     
     socket.on('roomDeleted', () => {
       // create toast sending message times up create new room
