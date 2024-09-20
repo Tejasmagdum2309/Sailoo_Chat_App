@@ -56,7 +56,7 @@ const startServer = async () => {
 
           // Remove all users from the room (optional)
           socket.leave(roomid);
-        }, 60 * 1000); // 1 minute in milliseconds
+        }, 5 * 60 * 1000  ); // 2 minute in milliseconds
       });
 
       // Send message to a specific room
