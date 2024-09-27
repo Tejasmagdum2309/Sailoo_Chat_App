@@ -6,7 +6,7 @@ import App from './App';
 
 
 
-const PUBLISHABLE_KEY ="pk_test_ZGVmaW5pdGUtZ3J1Yi0xOS5jbGVyay5hY2NvdW50cy5kZXYk";
+const PUBLISHABLE_KEY ="xyz"; // enter your key for clerk
 // const PUBLISHABLE_KEY = process.env.KEYCLERK;
 
 
